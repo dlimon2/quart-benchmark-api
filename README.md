@@ -11,4 +11,4 @@ Email: dani@dlimon.net
 - **Transformación de datos [Pendiente]**: Medir rendimiento en la manipulación de datos. Operaciones pesadas en datos: Filtración de listas grandes.
 
 ## Licencia
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE.md` para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
