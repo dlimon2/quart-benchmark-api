@@ -1,6 +1,7 @@
 import os, json
 from dotenv import load_dotenv
-from quart import Quart, Response
+from quart import Quart, Response, request
+from typing import List
 
 from _code.interfaces.quart_benchmark import QuartBenchmark
 
@@ -30,4 +31,15 @@ async def hello():
 @api.get('/json-serialization')
 async def json_serialization():
     response: str = await benchmark.json_serialization()
+    return Response(response, 200, None, 'application/json')
+
+
+@api.get('/cpu-intensive')
+async def cpu_intensive():
+    if not request.args:
+        task: str = 'factorize'
+    else:
+        task: str = request.args.get('task')
+    result: List[int] = await benchmark.cpu_intensive(task)
+    response: str = json.dumps({ 'factors': result })
     return Response(response, 200, None, 'application/json')
