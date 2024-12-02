@@ -31,6 +31,16 @@ class QuartBenchmark:
         """
         if task == 'factorize':
             return await self.__factorize()
+
+
+    async def multiple_requests(self) -> str:
+        """Lightweight operation. Creates a response dictionary, then json-serialize it
+        and return the json string.
+        """
+        response: Dict[str, str] = {
+            'message': 'This is a concurrent request test.'
+        }
+        return json.dumps(response)
         
 
     async def __factorize(self,

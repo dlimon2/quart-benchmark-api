@@ -43,3 +43,11 @@ async def cpu_intensive():
     result: List[int] = await benchmark.cpu_intensive(task)
     response: str = json.dumps({ 'factors': result })
     return Response(response, 200, None, 'application/json')
+
+
+@api.get('/multiple-requests')
+async def multiple_requests():
+    """This endpoint must be tested with tools like wrk or locust
+    to generate thousands of concurrent requests."""
+    response = await benchmark.multiple_requests()
+    return Response(response, 200, None, 'application/json')
