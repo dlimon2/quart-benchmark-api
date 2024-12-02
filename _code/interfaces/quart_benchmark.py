@@ -41,7 +41,26 @@ class QuartBenchmark:
             'message': 'This is a concurrent request test.'
         }
         return json.dumps(response)
+    
+
+    async def data_transformation(self,
+                                  data: str) -> str:
+        """Parses :data: JSON string info, filters elements where value > 100, serializes
+        the filtered data to JSON an returns the resultant string
         
+        Args:
+            :data: (str): JSON payload
+                -value (int): a value between 0 and 200
+        
+        Returns:
+            str: A JSON string with the filtered data.
+        """
+        parsed_data = json.loads(data)
+        filtered: List[Dict[str, int]] = [x for x in parsed_data if x.get('value') > 100]
+        response: str = json.dumps({
+            'filtered data': filtered })
+        return response
+
 
     async def __factorize(self,
                           number: int = 777**5) -> List[int]:

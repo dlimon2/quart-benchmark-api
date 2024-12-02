@@ -51,3 +51,18 @@ async def multiple_requests():
     to generate thousands of concurrent requests."""
     response = await benchmark.multiple_requests()
     return Response(response, 200, None, 'application/json')
+
+
+@api.post('/data-transformation')
+async def data_transformation():
+    """This endpoint must be tested with a large JSON payload on
+    POST request.
+    JSON List body:
+        List[Dict[str, int]] (key values must be called 'value'):
+            -value (int): A number between 0 and 200
+    Returns:
+        Response: JSON response with filtered values.
+    """
+    json_data: str = await request.get_data(as_text=True)
+    response = await benchmark.data_transformation(json_data)
+    return response 
